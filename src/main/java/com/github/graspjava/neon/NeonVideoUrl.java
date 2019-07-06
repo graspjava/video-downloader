@@ -16,7 +16,7 @@ import com.github.graspjava.model.neon.NeonVideo;
  */
 public class NeonVideoUrl {
 
-	public NeonVideo parseHtml(String baseUri) throws IOException {
+	public static NeonVideo parseHtml(String baseUri) throws IOException {
 
 		Document response = Jsoup.connect(baseUri).get();
 		

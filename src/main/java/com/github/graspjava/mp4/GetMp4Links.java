@@ -3,17 +3,17 @@
  */
 package com.github.graspjava.mp4;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.jsoup.Connection.Method;
-import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import com.github.graspjava.util.JsonUtil;
+import com.github.graspjava.model.neon.NeonVideo;
 
 /**
  * <p>
@@ -31,12 +31,12 @@ public class GetMp4Links {
 	 * @param helperUrl video url e.g.; YouTube, Udemy, Vimeo
 	 * @return
 	 */
-	public List<String> mp4Links(String helperUrl, String videoUrl, String description) throws Exception {
+	public static List<String> mp4Links(String helperUrl, NeonVideo neonVideo) throws IOException {
 		
 		Document resp = Jsoup.connect("http://savevideo.me/get/")
 							.method(Method.POST)
 							.headers(headers())
-							.data(data(videoUrl))
+							.data(data(neonVideo.getUrl()))
 							.post();
 		
 		return resp.getElementsByTag("div").get(0).getElementsByTag("p")
@@ -46,13 +46,13 @@ public class GetMp4Links {
 											.collect(Collectors.toList());
 	}
 	
-	private Map<String, String> data(String videoUrl) {
+	private static Map<String, String> data(String videoUrl) {
 		Map<String, String> data = new HashMap<>();
 		data.put("url", videoUrl);
 		return data;
 	}
 	
-	private Map<String, String> headers() {
+	private static Map<String, String> headers() {
 		Map<String, String> headers = new HashMap<>();
 		
 		headers.put("Accept", "*/*");
@@ -68,10 +68,5 @@ public class GetMp4Links {
 		headers.put("X-Requested-With", "XMLHttpRequest");
 		
 		return headers;
-	}
-	
-	public static void main(String[] args) throws Exception {
-		GetMp4Links links = new GetMp4Links();
-		links.mp4Links("http://savevideo.me", "https://player.vimeo.com/video/341589578", "Sholay Part - 14");
 	}
 }
