@@ -1,18 +1,118 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.github.graspjava</groupId>
-  <artifactId>video-downloader</artifactId>
-  <packaging>jar</packaging>
-  <version>1.0.0</version>
-  <name>video-downloader</name>
-  <url>http://maven.apache.org</url>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.github.graspjava</groupId>
+	<artifactId>video-downloader</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0.0</version>
+	<name>video-downloader</name>
+
+	<url>https://github.com/graspjava/video-downloader</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<!-- Java -->
+		<jdk.version>1.8</jdk.version>
+
+		<!-- Maven -->
+		<maven.compiler.version>3.0</maven.compiler.version>
+		<maven.eclipse.version>2.9</maven.eclipse.version>
+	</properties>
+
+	<developers>
+		<developer>
+			<id>graspjava</id>
+			<name>Gaurav Jain</name>
+			<email>gaurav.jain.sahab@gmail.com</email>
+			<organization>com.github.graspjava</organization>
+			<organizationUrl>https://github.com/graspjava</organizationUrl>
+		</developer>
+
+		<developer>
+			<id>vsk.rahul</id>
+			<name>Rahul Vishavkarma</name>
+			<email>vsk.rahul@gmail.com</email>
+			<organization>com.github.vskrahul</organization>
+			<organizationUrl>https://github.com/vskrahul</organizationUrl>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:git://github.com/graspjava/video-downloader.git</connection>
+		<developerConnection>scm:git:ssh://github.com/graspjava/video-downloader.git</developerConnection>
+		<url>https://github.com/graspjava/video-downloader</url>
+	</scm>
+
+	<dependencies>
+	
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.11.3</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+		<directory>${project.basedir}/target</directory>
+		<outputDirectory>${project.build.directory}/classes</outputDirectory>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<testOutputDirectory>${project.build.directory}/test-classes</testOutputDirectory>
+		<sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+		<scriptSourceDirectory>src/main/scripts</scriptSourceDirectory>
+		<testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
+
+		<resources>
+			<resource>
+				<directory>${project.basedir}/src/main/resources</directory>
+			</resource>
+		</resources>
+
+		<testResources>
+			<testResource>
+				<directory>${project.basedir}/src/test/resources</directory>
+			</testResource>
+		</testResources>
+
+		<pluginManagement>
+
+			<plugins>
+
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>${maven.eclipse.version}</version>
+					<configuration>
+						<downloadSources>true</downloadSources>
+						<downloadJavadocs>true</downloadJavadocs>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven.compiler.version}</version>
+					<configuration>
+						<source>${jdk.version}</source>
+						<target>${jdk.version}</target>
+					</configuration>
+				</plugin>
+
+			</plugins>
+
+		</pluginManagement>
+	</build>
+
 </project>
